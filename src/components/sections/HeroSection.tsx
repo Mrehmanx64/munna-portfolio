@@ -3,7 +3,14 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Code2, Cpu, Zap, ShieldCheck } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Code2,
+  Cpu,
+  Zap,
+  ShieldCheck,
+} from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -115,10 +122,11 @@ export function HeroSection() {
                     delay: 0.15 + idx * 0.08,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className={`inline-block mr-3 sm:mr-4 ${word.highlight
-                    ? "text-[#C2F800] drop-shadow-[0_0_35px_rgba(194,248,0,0.35)]"
-                    : "text-white"
-                    }`}
+                  className={`inline-block mr-3 sm:mr-4 ${
+                    word.highlight
+                      ? "text-[#C2F800] drop-shadow-[0_0_35px_rgba(194,248,0,0.35)]"
+                      : "text-white"
+                  }`}
                 >
                   {word.text}
                 </motion.span>
@@ -153,13 +161,13 @@ export function HeroSection() {
               </MagneticButton>
 
               <MagneticButton
-                href="/resume.pdf"
-                download="Naimur_Resume.pdf"
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto font-semibold"
               >
-                <span>Download Resume</span>
+                <a href="/resume.pdf" download="Naimur_Resume.pdf">
+                  Download Resume
+                </a>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />
               </MagneticButton>
             </motion.div>
@@ -171,18 +179,26 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.06)] flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#64748B]"
             >
-              <span className="text-[#94A3B8] font-mono uppercase tracking-wider">Primary Stack:</span>
+              <span className="text-[#94A3B8] font-mono uppercase tracking-wider">
+                Primary Stack:
+              </span>
               <div className="flex flex-wrap items-center gap-2">
-                {["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Better Auth"].map(
-                  (tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 rounded-md bg-[#10141E] border border-[rgba(255,255,255,0.06)] text-[#E2E8F0] font-mono text-[11px]"
-                    >
-                      {tech}
-                    </span>
-                  )
-                )}
+                {[
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Tailwind CSS",
+                  "Node.js",
+                  "MongoDB",
+                  "Better Auth",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md bg-[#10141E] border border-[rgba(255,255,255,0.06)] text-[#E2E8F0] font-mono text-[11px]"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -192,7 +208,11 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 0.3,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="relative w-72 sm:w-80 md:w-96 aspect-square"
             >
               {/* Outer Animated Glow Ring */}
@@ -292,7 +312,11 @@ export function HeroSection() {
             <div className="w-5 h-8 rounded-full border border-[rgba(255,255,255,0.15)] flex items-start justify-center p-1 group-hover:border-[#C2F800] transition-colors">
               <motion.div
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="w-1.5 h-1.5 rounded-full bg-[#C2F800]"
               />
             </div>
