@@ -153,12 +153,13 @@ export function HeroSection() {
               </MagneticButton>
 
               <MagneticButton
-                href="#contact"
+                href="/resume.pdf"
+                download="Naimur_Resume.pdf"
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto font-semibold"
               >
-                <span>Let&apos;s Connect</span>
+                <span>Download Resume</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />
               </MagneticButton>
             </motion.div>
