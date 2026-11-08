@@ -165,9 +165,10 @@ export function HeroSection() {
                 size="lg"
                 className="w-full sm:w-auto font-semibold"
               >
-                <a href="/resume.pdf" download="Naimur_Resume.pdf">
+                <a href="/Naimur_Resume.pdf" download="Naimur_Resume.pdf">
                   Download Resume
                 </a>
+
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />
               </MagneticButton>
             </motion.div>
