@@ -77,7 +77,7 @@ export function CustomCursor() {
     <>
       {/* Central crisp lime dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#C2F800] pointer-events-none z-[9999] shadow-[0_0_8px_#C2F800]"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#00F2FF] pointer-events-none z-[9999] shadow-[0_0_8px_#00F2FF]"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -100,8 +100,8 @@ export function CustomCursor() {
           y: mousePosition.y - (isHovered ? 24 : 14),
           width: isHovered ? 48 : 28,
           height: isHovered ? 48 : 28,
-          borderColor: isHovered ? "rgba(194, 248, 0, 0.85)" : "rgba(194, 248, 0, 0.35)",
-          backgroundColor: isHovered ? "rgba(194, 248, 0, 0.1)" : "rgba(194, 248, 0, 0)",
+          borderColor: isHovered ? "rgba(0, 242, 255, 0.85)" : "rgba(0, 242, 255, 0.35)",
+          backgroundColor: isHovered ? "rgba(0, 242, 255, 0.1)" : "rgba(0, 242, 255, 0)",
         }}
         transition={{
           type: "spring",

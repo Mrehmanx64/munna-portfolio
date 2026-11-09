@@ -29,11 +29,11 @@ export function SectionHeading({
     >
       {/* Small Badge */}
       <div
-        className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 border border-[rgba(194,248,0,0.3)] bg-[rgba(194,248,0,0.06)] text-[#C2F800] ${
+        className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 border border-[rgba(0,242,255,0.3)] bg-[rgba(0,242,255,0.06)] text-[#00F2FF] ${
           isCentered ? "mx-auto" : ""
         }`}
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#C2F800] animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#00F2FF] animate-pulse" />
         {badge}
       </div>
 
@@ -41,7 +41,7 @@ export function SectionHeading({
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-[1.15]">
         {title}{" "}
         {highlight && (
-          <span className="text-[#C2F800] drop-shadow-[0_0_20px_rgba(194,248,0,0.3)]">
+          <span className="text-[#00F2FF] drop-shadow-[0_0_20px_rgba(0,242,255,0.3)]">
             {highlight}
           </span>
         )}

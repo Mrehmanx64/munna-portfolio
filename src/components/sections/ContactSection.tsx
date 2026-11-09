@@ -78,7 +78,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative py-24 sm:py-32 bg-[#07090E] overflow-hidden">
       {/* Background Glows */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[rgba(194,248,0,0.03)] blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[rgba(0,242,255,0.03)] blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[rgba(0,242,254,0.02)] blur-[160px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,7 +101,7 @@ export function ContactSection() {
             {/* Contact Card */}
             <SpotlightCard className="p-6 sm:p-8 border-[rgba(255,255,255,0.08)]">
               <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-[#C2F800]" />
+                <Sparkles className="w-5 h-5 text-[#00F2FF]" />
                 <span>Let&apos;s Connect</span>
               </h3>
               <p className="text-sm text-[#94A3B8] leading-relaxed mb-6">
@@ -113,7 +113,7 @@ export function ContactSection() {
                 <div className="flex items-center justify-between text-xs text-[#64748B] mb-1.5 font-mono">
                   <span>DIRECT EMAIL</span>
                   {copiedEmail && (
-                    <span className="text-[#C2F800] font-semibold flex items-center gap-1">
+                    <span className="text-[#00F2FF] font-semibold flex items-center gap-1">
                       <Check className="w-3 h-3" /> Copied to clipboard!
                     </span>
                   )}
@@ -125,7 +125,7 @@ export function ContactSection() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="p-2 rounded-lg bg-[#1E2638] hover:bg-[#C2F800] text-[#94A3B8] hover:text-[#0B0D12] transition-colors shrink-0"
+                    className="p-2 rounded-lg bg-[#1E2638] hover:bg-[#00F2FF] text-[#94A3B8] hover:text-[#0B0D12] transition-colors shrink-0"
                     aria-label="Copy email address"
                   >
                     {copiedEmail ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -136,16 +136,16 @@ export function ContactSection() {
               {/* Meta details: Location, Status */}
               <div className="space-y-3 text-xs sm:text-sm text-[#94A3B8]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#C2F800] shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#00F2FF] shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <span>Location: <strong className="text-white font-medium">{siteConfig.developer.location}</strong></span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#C2F800] shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#00F2FF] shrink-0">
                     <Clock className="w-4 h-4" />
                   </div>
-                  <span>Availability: <strong className="text-[#C2F800] font-medium">Open for discussions</strong></span>
+                  <span>Availability: <strong className="text-[#00F2FF] font-medium">Open for discussions</strong></span>
                 </div>
               </div>
 
@@ -159,7 +159,7 @@ export function ContactSection() {
                     href={siteConfig.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-white hover:border-[#C2F800] hover:text-[#C2F800] transition-colors text-xs font-medium"
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-white hover:border-[#00F2FF] hover:text-[#00F2FF] transition-colors text-xs font-medium"
                   >
                     <GithubIcon className="w-4 h-4" />
                     <span>GitHub</span>
@@ -170,7 +170,7 @@ export function ContactSection() {
                     href={siteConfig.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-white hover:border-[#C2F800] hover:text-[#C2F800] transition-colors text-xs font-medium"
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-white hover:border-[#00F2FF] hover:text-[#00F2FF] transition-colors text-xs font-medium"
                   >
                     <LinkedinIcon className="w-4 h-4" />
                     <span>LinkedIn</span>
@@ -192,7 +192,7 @@ export function ContactSection() {
             <SpotlightCard className="p-6 sm:p-8 lg:p-10 border-[rgba(255,255,255,0.08)]">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-[rgba(194,248,0,0.15)] border-2 border-[#C2F800] flex items-center justify-center text-[#C2F800] mx-auto shadow-[0_0_25px_rgba(194,248,0,0.4)]">
+                  <div className="w-16 h-16 rounded-full bg-[rgba(0,242,255,0.15)] border-2 border-[#00F2FF] flex items-center justify-center text-[#00F2FF] mx-auto shadow-[0_0_25px_rgba(0,242,255,0.4)]">
                     <Check className="w-8 h-8 stroke-[2.5]" />
                   </div>
                   <h4 className="text-2xl font-bold text-white">
@@ -200,7 +200,7 @@ export function ContactSection() {
                   </h4>
                   <p className="text-sm text-[#94A3B8] max-w-md mx-auto leading-relaxed">
                     Your email client has been opened with your message pre-filled. You can also reach me directly anytime at{" "}
-                    <span className="text-[#C2F800] font-mono">{siteConfig.social.email}</span>.
+                    <span className="text-[#00F2FF] font-mono">{siteConfig.social.email}</span>.
                   </p>
                   <button
                     type="button"
@@ -222,7 +222,7 @@ export function ContactSection() {
                         htmlFor="name"
                         className="block text-xs font-mono uppercase tracking-wider text-[#94A3B8] mb-2"
                       >
-                        Your Name <span className="text-[#C2F800]">*</span>
+                        Your Name <span className="text-[#00F2FF]">*</span>
                       </label>
                       <input
                         type="text"
@@ -233,10 +233,10 @@ export function ContactSection() {
                           if (errors.name) setErrors({ ...errors, name: "" });
                         }}
                         placeholder="e.g. Alex Rahman"
-                        className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#C2F800] transition-colors ${
+                        className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#00F2FF] transition-colors ${
                           errors.name
                             ? "border-red-500/80"
-                            : "border-[rgba(255,255,255,0.1)] focus:border-[#C2F800]"
+                            : "border-[rgba(255,255,255,0.1)] focus:border-[#00F2FF]"
                         }`}
                       />
                       {errors.name && (
@@ -253,7 +253,7 @@ export function ContactSection() {
                         htmlFor="email"
                         className="block text-xs font-mono uppercase tracking-wider text-[#94A3B8] mb-2"
                       >
-                        Your Email <span className="text-[#C2F800]">*</span>
+                        Your Email <span className="text-[#00F2FF]">*</span>
                       </label>
                       <input
                         type="email"
@@ -264,10 +264,10 @@ export function ContactSection() {
                           if (errors.email) setErrors({ ...errors, email: "" });
                         }}
                         placeholder="alex@example.com"
-                        className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#C2F800] transition-colors ${
+                        className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#00F2FF] transition-colors ${
                           errors.email
                             ? "border-red-500/80"
-                            : "border-[rgba(255,255,255,0.1)] focus:border-[#C2F800]"
+                            : "border-[rgba(255,255,255,0.1)] focus:border-[#00F2FF]"
                         }`}
                       />
                       {errors.email && (
@@ -295,7 +295,7 @@ export function ContactSection() {
                         setFormData({ ...formData, subject: e.target.value })
                       }
                       placeholder="Project Inquiry, Full-Stack Opportunity, etc."
-                      className="w-full px-4 py-3 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.1)] text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#C2F800] focus:border-[#C2F800] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.1)] text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#00F2FF] focus:border-[#00F2FF] transition-colors"
                     />
                   </div>
 
@@ -305,7 +305,7 @@ export function ContactSection() {
                       htmlFor="message"
                       className="block text-xs font-mono uppercase tracking-wider text-[#94A3B8] mb-2"
                     >
-                      Message <span className="text-[#C2F800]">*</span>
+                      Message <span className="text-[#00F2FF]">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -316,10 +316,10 @@ export function ContactSection() {
                         if (errors.message) setErrors({ ...errors, message: "" });
                       }}
                       placeholder="Tell me about what you have in mind..."
-                      className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#C2F800] transition-colors resize-none ${
+                      className={`w-full px-4 py-3 rounded-xl bg-[#151C2A] border text-white text-sm placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#00F2FF] transition-colors resize-none ${
                         errors.message
                           ? "border-red-500/80"
-                          : "border-[rgba(255,255,255,0.1)] focus:border-[#C2F800]"
+                          : "border-[rgba(255,255,255,0.1)] focus:border-[#00F2FF]"
                       }`}
                     />
                     {errors.message && (
@@ -332,9 +332,9 @@ export function ContactSection() {
 
                   {/* Transparent Integration Notice */}
                   <div className="p-3.5 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.06)] flex items-start gap-2.5 text-xs text-[#64748B]">
-                    <MessageSquare className="w-4 h-4 text-[#C2F800] shrink-0 mt-0.5" />
+                    <MessageSquare className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                     <span>
-                      <strong>Honest Delivery:</strong> Submitting will trigger your preferred mail client addressed to <strong className="text-white">{siteConfig.social.email}</strong>. (API backend like Resend or Formspree can be easily bound in <code className="text-[#C2F800]">src/config/site.ts</code>).
+                      <strong>Honest Delivery:</strong> Submitting will trigger your preferred mail client addressed to <strong className="text-white">{siteConfig.social.email}</strong>. (API backend like Resend or Formspree can be easily bound in <code className="text-[#00F2FF]">src/config/site.ts</code>).
                     </span>
                   </div>
 
@@ -342,7 +342,7 @@ export function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 rounded-xl bg-[#C2F800] hover:bg-[#D5FF26] text-[#0B0D12] font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(194,248,0,0.35)] hover:shadow-[0_0_30px_rgba(194,248,0,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 px-6 rounded-xl bg-[#00F2FF] hover:bg-[#D5FF26] text-[#0B0D12] font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,242,255,0.35)] hover:shadow-[0_0_30px_rgba(0,242,255,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>

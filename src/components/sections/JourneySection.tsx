@@ -19,7 +19,7 @@ export function JourneySection() {
     <section id="journey" className="relative py-24 sm:py-32 bg-[#0B0D12] overflow-hidden">
       {/* Background Dots Texture */}
       <div className="absolute inset-0 bg-dots-pattern opacity-30 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-[rgba(194,248,0,0.03)] blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-[rgba(0,242,255,0.03)] blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -32,10 +32,10 @@ export function JourneySection() {
         {/* Vertical Connected Nodes Timeline */}
         <div className="relative max-w-4xl mx-auto">
           {/* Continuous Glowing Center Line (Desktop) */}
-          <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#C2F800] via-[rgba(194,248,0,0.3)] to-transparent" />
+          <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#00F2FF] via-[rgba(0,242,255,0.3)] to-transparent" />
 
           {/* Continuous Left Line (Mobile) */}
-          <div className="md:hidden absolute left-5 top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#C2F800] via-[rgba(194,248,0,0.3)] to-transparent" />
+          <div className="md:hidden absolute left-5 top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#00F2FF] via-[rgba(0,242,255,0.3)] to-transparent" />
 
           {/* Timeline Nodes */}
           <div className="space-y-12 sm:space-y-16">
@@ -60,11 +60,11 @@ export function JourneySection() {
                 >
                   <SpotlightCard
                     enableTilt={true}
-                    className="p-6 sm:p-7 border-[rgba(255,255,255,0.08)] hover:border-[rgba(194,248,0,0.3)] group text-left"
+                    className="p-6 sm:p-7 border-[rgba(255,255,255,0.08)] hover:border-[rgba(0,242,255,0.3)] group text-left"
                   >
                     {/* Milestone Step & Focus */}
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-mono font-bold text-[#C2F800] bg-[rgba(194,248,0,0.1)] px-2.5 py-0.5 rounded-md border border-[rgba(194,248,0,0.25)]">
+                      <span className="text-xs font-mono font-bold text-[#00F2FF] bg-[rgba(0,242,255,0.1)] px-2.5 py-0.5 rounded-md border border-[rgba(0,242,255,0.25)]">
                         PHASE {item.step}
                       </span>
                       <span className="text-xs font-mono text-[#64748B]">
@@ -74,10 +74,10 @@ export function JourneySection() {
 
                     {/* Title */}
                     <div className="flex items-center gap-2.5 mb-2">
-                      <div className="w-7 h-7 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#C2F800] shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-[#151C2A] flex items-center justify-center text-[#00F2FF] shrink-0">
                         <IconComponent className="w-4 h-4" />
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#C2F800] transition-colors">
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#00F2FF] transition-colors">
                         {item.title}
                       </h3>
                     </div>
@@ -113,8 +113,8 @@ export function JourneySection() {
                 <div key={item.step} className="relative">
                   {/* Node Marker Dot */}
                   <div className="absolute left-5 md:left-1/2 -translate-x-1/2 top-6 z-20 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-[#0B0D12] border-2 border-[#C2F800] flex items-center justify-center shadow-[0_0_15px_rgba(194,248,0,0.6)]">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#C2F800]" />
+                    <div className="w-8 h-8 rounded-full bg-[#0B0D12] border-2 border-[#00F2FF] flex items-center justify-center shadow-[0_0_15px_rgba(0,242,255,0.6)]">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#00F2FF]" />
                     </div>
                   </div>
 

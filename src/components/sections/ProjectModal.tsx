@@ -63,7 +63,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-[#151C2A]/90 border border-[rgba(255,255,255,0.1)] text-[#94A3B8] hover:text-white hover:border-[#C2F800] transition-colors focus:outline-none"
+              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-[#151C2A]/90 border border-[rgba(255,255,255,0.1)] text-[#94A3B8] hover:text-white hover:border-[#00F2FF] transition-colors focus:outline-none"
               aria-label="Close project modal"
             >
               <X className="w-5 h-5" />
@@ -85,7 +85,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <span
                   className={`w-2 h-2 rounded-full ${
                     project.status === "live"
-                      ? "bg-[#C2F800] animate-pulse"
+                      ? "bg-[#00F2FF] animate-pulse"
                       : "bg-[#00F2FE]"
                   }`}
                 />
@@ -102,12 +102,12 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     {project.title}
                   </h3>
                   {project.nativeTitle && (
-                    <span className="text-xl sm:text-2xl font-bold text-[#C2F800]">
+                    <span className="text-xl sm:text-2xl font-bold text-[#00F2FF]">
                       ({project.nativeTitle})
                     </span>
                   )}
                 </div>
-                <p className="text-base text-[#C2F800] font-medium">
+                <p className="text-base text-[#00F2FF] font-medium">
                   {project.tagline}
                 </p>
               </div>
@@ -133,7 +133,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       key={idx}
                       className="p-3 rounded-xl bg-[#131926] border border-[rgba(255,255,255,0.06)] flex items-start gap-2.5 text-xs sm:text-sm text-[#E2E8F0]"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[#C2F800] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -151,7 +151,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       key={group.category}
                       className="p-4 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.08)]"
                     >
-                      <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-[#C2F800]">
+                      <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-[#00F2FF]">
                         <Layers className="w-3.5 h-3.5" />
                         <span>{group.category}</span>
                       </div>

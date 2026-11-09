@@ -6,7 +6,7 @@ import { SiteConfig } from "@/types";
  */
 export const siteConfig: SiteConfig = {
   developer: {
-    name: "Naimur",
+    name: "Munna",
     role: "Full-Stack Web Developer",
     headline: "Turning Ideas Into Digital Experiences.",
     subheadline:
@@ -50,7 +50,8 @@ export const siteConfig: SiteConfig = {
       name: "Next.js",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "App Router, Server Components, SSR, API routes, and modern performance optimizations.",
+      description:
+        "App Router, Server Components, SSR, API routes, and modern performance optimizations.",
       iconName: "Zap",
       highlight: true,
     },
@@ -58,7 +59,8 @@ export const siteConfig: SiteConfig = {
       name: "React",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Component-driven architecture, custom hooks, state management, and modern React 19.",
+      description:
+        "Component-driven architecture, custom hooks, state management, and modern React 19.",
       iconName: "Atom",
       highlight: true,
     },
@@ -66,7 +68,8 @@ export const siteConfig: SiteConfig = {
       name: "TypeScript",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Strict static typing, interfaces, generic types, and type-safe full-stack workflows.",
+      description:
+        "Strict static typing, interfaces, generic types, and type-safe full-stack workflows.",
       iconName: "Code2",
       highlight: true,
     },
@@ -74,7 +77,8 @@ export const siteConfig: SiteConfig = {
       name: "Tailwind CSS",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Utility-first responsive design, custom design tokens, dark mode, and sleek micro-styling.",
+      description:
+        "Utility-first responsive design, custom design tokens, dark mode, and sleek micro-styling.",
       iconName: "Palette",
       highlight: true,
     },
@@ -82,21 +86,24 @@ export const siteConfig: SiteConfig = {
       name: "JavaScript (ES6+)",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Asynchronous patterns, closures, array primitives, modern DOM APIs, and modular architecture.",
+      description:
+        "Asynchronous patterns, closures, array primitives, modern DOM APIs, and modular architecture.",
       iconName: "FileCode",
     },
     {
       name: "HTML5 & Semantic Web",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Accessible markup, clean semantic structure, SEO fundamentals, and responsive viewports.",
+      description:
+        "Accessible markup, clean semantic structure, SEO fundamentals, and responsive viewports.",
       iconName: "Layout",
     },
     {
       name: "CSS3 & Modern Motion",
       category: "frontend",
       categoryLabel: "Frontend",
-      description: "Flexbox, CSS Grid, keyframe animations, glassmorphism, and responsive layouts.",
+      description:
+        "Flexbox, CSS Grid, keyframe animations, glassmorphism, and responsive layouts.",
       iconName: "Layers",
     },
 
@@ -105,7 +112,8 @@ export const siteConfig: SiteConfig = {
       name: "Node.js",
       category: "backend",
       categoryLabel: "Backend",
-      description: "Event-driven runtime environment for building fast, non-blocking network applications.",
+      description:
+        "Event-driven runtime environment for building fast, non-blocking network applications.",
       iconName: "Server",
       highlight: true,
     },
@@ -113,7 +121,8 @@ export const siteConfig: SiteConfig = {
       name: "Express.js",
       category: "backend",
       categoryLabel: "Backend",
-      description: "Minimalist web framework for routing, middleware pipelines, and scalable backend logic.",
+      description:
+        "Minimalist web framework for routing, middleware pipelines, and scalable backend logic.",
       iconName: "Cpu",
       highlight: true,
     },
@@ -121,7 +130,8 @@ export const siteConfig: SiteConfig = {
       name: "RESTful APIs",
       category: "backend",
       categoryLabel: "Backend",
-      description: "Clean REST architecture, predictable endpoints, HTTP status codes, and JSON serialization.",
+      description:
+        "Clean REST architecture, predictable endpoints, HTTP status codes, and JSON serialization.",
       iconName: "Workflow",
     },
 
@@ -130,7 +140,8 @@ export const siteConfig: SiteConfig = {
       name: "MongoDB",
       category: "database",
       categoryLabel: "Database",
-      description: "Document-oriented NoSQL database for flexible data modeling and rapid query execution.",
+      description:
+        "Document-oriented NoSQL database for flexible data modeling and rapid query execution.",
       iconName: "Database",
       highlight: true,
     },
@@ -138,7 +149,8 @@ export const siteConfig: SiteConfig = {
       name: "Mongoose",
       category: "database",
       categoryLabel: "Database",
-      description: "Schema validation, middleware hooks, query population, and model encapsulation in Node.",
+      description:
+        "Schema validation, middleware hooks, query population, and model encapsulation in Node.",
       iconName: "HardDrive",
     },
 
@@ -147,7 +159,8 @@ export const siteConfig: SiteConfig = {
       name: "Better Auth",
       category: "auth",
       categoryLabel: "Authentication",
-      description: "Modern, secure, and type-safe authentication framework for full-stack TypeScript applications.",
+      description:
+        "Modern, secure, and type-safe authentication framework for full-stack TypeScript applications.",
       iconName: "ShieldCheck",
       highlight: true,
     },
@@ -157,28 +170,32 @@ export const siteConfig: SiteConfig = {
       name: "Git",
       category: "tools",
       categoryLabel: "Tools",
-      description: "Distributed version control, branch management, merge conflict resolution, and history tracking.",
+      description:
+        "Distributed version control, branch management, merge conflict resolution, and history tracking.",
       iconName: "GitBranch",
     },
     {
       name: "GitHub",
       category: "tools",
       categoryLabel: "Tools",
-      description: "Remote code collaboration, pull requests, automated releases, and issue tracking.",
+      description:
+        "Remote code collaboration, pull requests, automated releases, and issue tracking.",
       iconName: "Github",
     },
     {
       name: "VS Code",
       category: "tools",
       categoryLabel: "Tools",
-      description: "Customized development environment with linting, formatting, and debugging workflows.",
+      description:
+        "Customized development environment with linting, formatting, and debugging workflows.",
       iconName: "Terminal",
     },
     {
       name: "AI-Assisted Coding",
       category: "tools",
       categoryLabel: "Tools",
-      description: "Leveraging state-of-the-art AI tools for rapid ideation, pair programming, and architecture validation.",
+      description:
+        "Leveraging state-of-the-art AI tools for rapid ideation, pair programming, and architecture validation.",
       iconName: "Sparkles",
       highlight: true,
     },
@@ -208,9 +225,18 @@ export const siteConfig: SiteConfig = {
         "Fast responsive mobile interface optimized for on-the-go market shoppers",
       ],
       techStackDetails: [
-        { category: "Frontend", items: ["Next.js App Router", "React", "Tailwind CSS", "TypeScript"] },
-        { category: "Design", items: ["Responsive UI", "Bangla Typography", "Custom Data Cards"] },
-        { category: "Deployment", items: ["Vercel Edge Platform", "Automated CI/CD"] },
+        {
+          category: "Frontend",
+          items: ["Next.js App Router", "React", "Tailwind CSS", "TypeScript"],
+        },
+        {
+          category: "Design",
+          items: ["Responsive UI", "Bangla Typography", "Custom Data Cards"],
+        },
+        {
+          category: "Deployment",
+          items: ["Vercel Edge Platform", "Automated CI/CD"],
+        },
       ],
     },
     {
@@ -222,7 +248,14 @@ export const siteConfig: SiteConfig = {
       longDescription:
         "Fit Log is a sleek, distraction-free fitness planning and workout tracking application designed for gym-goers and fitness enthusiasts. It enables users to create structured routine calendars, log real-time exercise performance (sets, reps, weights, duration), and monitor overall training consistency without cluttered advertisements.",
       image: "/images/projects/fit-log.jpg",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Mongoose", "MongoDB"],
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Node.js",
+        "Mongoose",
+        "MongoDB",
+      ],
       featured: true,
       status: "development",
       statusLabel: "Interactive Preview & Showcase",
@@ -234,9 +267,18 @@ export const siteConfig: SiteConfig = {
         "Dark-mode first interface designed for high contrast in gym environments",
       ],
       techStackDetails: [
-        { category: "Frontend", items: ["Next.js", "TypeScript", "Tailwind CSS"] },
-        { category: "Backend & Data", items: ["Node.js", "Express.js", "Mongoose", "MongoDB"] },
-        { category: "Architecture", items: ["REST Endpoints", "Modular Component System"] },
+        {
+          category: "Frontend",
+          items: ["Next.js", "TypeScript", "Tailwind CSS"],
+        },
+        {
+          category: "Backend & Data",
+          items: ["Node.js", "Express.js", "Mongoose", "MongoDB"],
+        },
+        {
+          category: "Architecture",
+          items: ["REST Endpoints", "Modular Component System"],
+        },
       ],
     },
   ],
@@ -259,7 +301,13 @@ export const siteConfig: SiteConfig = {
       focus: "Node.js, Express.js, MongoDB, REST APIs",
       description:
         "Expanded into backend systems to understand data flows and server logic. Built RESTful API endpoints with Express.js, structured database schemas in MongoDB using Mongoose, and implemented CRUD operations.",
-      technologies: ["Node.js", "Express.js", "MongoDB", "Mongoose", "REST APIs"],
+      technologies: [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "REST APIs",
+      ],
       icon: "Server",
     },
     {
@@ -269,7 +317,13 @@ export const siteConfig: SiteConfig = {
       focus: "Next.js App Router, TypeScript, Better Auth, Tailwind CSS",
       description:
         "Embraced modern industry standards: Next.js App Router for hybrid rendering, TypeScript for bulletproof type safety, Better Auth for secure user identity, and Tailwind CSS for rapid, polished styling.",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Better Auth"],
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Better Auth",
+      ],
       icon: "Layers",
     },
     {
@@ -279,7 +333,12 @@ export const siteConfig: SiteConfig = {
       focus: "Bazar Dor & Fit Log",
       description:
         "Shifted from tutorials to solving tangible problems. Shipped 'Bazar Dor' to bring price clarity to Bengali consumers and architected 'Fit Log' for structured workout planning and activity tracking.",
-      technologies: ["Full-Stack Next.js", "Vercel", "MongoDB", "Real-world Problem Solving"],
+      technologies: [
+        "Full-Stack Next.js",
+        "Vercel",
+        "MongoDB",
+        "Real-world Problem Solving",
+      ],
       icon: "Rocket",
     },
     {
@@ -289,7 +348,11 @@ export const siteConfig: SiteConfig = {
       focus: "Independent SaaS Products & Software Venture",
       description:
         "Actively working toward the long-term ambition of founding a software company. Focusing on scalable system design, user-centered product craft, and building software that creates genuine human impact.",
-      technologies: ["Product Strategy", "Scalable Systems", "SaaS Engineering"],
+      technologies: [
+        "Product Strategy",
+        "Scalable Systems",
+        "SaaS Engineering",
+      ],
       icon: "Compass",
     },
   ],

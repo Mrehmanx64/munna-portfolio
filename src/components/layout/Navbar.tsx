@@ -63,15 +63,15 @@ export function Navbar() {
             {/* Logo */}
             <a
               href="#hero"
-              className="group flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2F800] rounded-lg p-1"
+              className="group flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F2FF] rounded-lg p-1"
               aria-label={`${siteConfig.developer.name} - Home`}
             >
-              <div className="w-9 h-9 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.12)] flex items-center justify-center text-[#C2F800] transition-transform duration-300 group-hover:border-[#C2F800] group-hover:scale-105 shadow-[0_0_15px_rgba(194,248,0,0.15)]">
+              <div className="w-9 h-9 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.12)] flex items-center justify-center text-[#00F2FF] transition-transform duration-300 group-hover:border-[#00F2FF] group-hover:scale-105 shadow-[0_0_15px_rgba(0,242,255,0.15)]">
                 <Terminal className="w-4 h-4 stroke-[2.5]" />
               </div>
               <span className="text-xl font-bold tracking-tight text-white flex items-center">
                 {siteConfig.developer.name}
-                <span className="text-[#C2F800] text-2xl leading-none">.</span>
+                <span className="text-[#00F2FF] text-2xl leading-none">.</span>
               </span>
             </a>
 
@@ -94,7 +94,7 @@ export function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="activeNavIndicator"
-                        className="absolute inset-0 bg-[#C2F800] rounded-full shadow-[0_0_15px_rgba(194,248,0,0.5)]"
+                        className="absolute inset-0 bg-[#00F2FF] rounded-full shadow-[0_0_15px_rgba(0,242,255,0.5)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -122,11 +122,11 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2.5 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.1)] text-[#94A3B8] hover:text-white hover:border-[#C2F800] focus:outline-none focus:ring-2 focus:ring-[#C2F800] transition-colors"
+                className="p-2.5 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.1)] text-[#94A3B8] hover:text-white hover:border-[#00F2FF] focus:outline-none focus:ring-2 focus:ring-[#00F2FF] transition-colors"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Toggle navigation menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5 text-[#C2F800]" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 text-[#00F2FF]" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </nav>
@@ -150,19 +150,19 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#10141E] border border-[rgba(255,255,255,0.12)] flex items-center justify-center text-[#C2F800]">
+                <div className="w-8 h-8 rounded-lg bg-[#10141E] border border-[rgba(255,255,255,0.12)] flex items-center justify-center text-[#00F2FF]">
                   <Terminal className="w-4 h-4" />
                 </div>
                 <span className="text-lg font-bold text-white">
                   {siteConfig.developer.name}
-                  <span className="text-[#C2F800]">.</span>
+                  <span className="text-[#00F2FF]">.</span>
                 </span>
               </a>
 
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-lg bg-[#10141E] border border-[rgba(255,255,255,0.1)] text-white hover:text-[#C2F800] focus:outline-none"
+                className="p-2 rounded-lg bg-[#10141E] border border-[rgba(255,255,255,0.1)] text-white hover:text-[#00F2FF] focus:outline-none"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -184,7 +184,7 @@ export function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.06 }}
                     className={`flex items-center justify-between text-2xl font-bold py-2 border-b border-[rgba(255,255,255,0.05)] transition-colors ${
-                      isActive ? "text-[#C2F800]" : "text-white hover:text-[#C2F800]"
+                      isActive ? "text-[#00F2FF]" : "text-white hover:text-[#00F2FF]"
                     }`}
                   >
                     <span>{item.label}</span>
@@ -204,7 +204,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#C2F800] text-[#0B0D12] font-bold text-center shadow-[0_0_20px_rgba(194,248,0,0.4)]"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#00F2FF] text-[#0B0D12] font-bold text-center shadow-[0_0_20px_rgba(0,242,255,0.4)]"
                 >
                   <span>Let&apos;s Connect</span>
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />

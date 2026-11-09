@@ -88,7 +88,7 @@ export function SkillsSection() {
                 key={cat.key}
                 type="button"
                 onClick={() => setActiveCategory(cat.key)}
-                className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2F800] ${
+                className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F2FF] ${
                   isActive
                     ? "text-[#0B0D12] shadow-[0_0_20px_rgba(194,248,0,0.35)]"
                     : "text-[#94A3B8] hover:text-white bg-[#10141E]/80 border border-[rgba(255,255,255,0.08)] hover:border-[rgba(194,248,0,0.2)]"
@@ -97,7 +97,7 @@ export function SkillsSection() {
                 {isActive && (
                   <motion.div
                     layoutId="activeSkillTab"
-                    className="absolute inset-0 bg-[#C2F800] rounded-xl"
+                    className="absolute inset-0 bg-[#00F2FF] rounded-xl"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -135,7 +135,7 @@ export function SkillsSection() {
                     <div>
                       {/* Top Header: Icon & Category Label */}
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#C2F800] group-hover:bg-[#C2F800] group-hover:text-[#0B0D12] group-hover:shadow-[0_0_20px_rgba(194,248,0,0.4)] transition-all duration-300">
+                        <div className="w-11 h-11 rounded-xl bg-[#151C2A] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#00F2FF] group-hover:bg-[#00F2FF] group-hover:text-[#0B0D12] group-hover:shadow-[0_0_20px_rgba(194,248,0,0.4)] transition-all duration-300">
                           <IconComponent className="w-5 h-5 stroke-[2]" />
                         </div>
                         <span className="text-[11px] font-mono uppercase tracking-wider text-[#64748B] group-hover:text-[#94A3B8] transition-colors">
@@ -145,11 +145,11 @@ export function SkillsSection() {
 
                       {/* Title */}
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#C2F800] transition-colors">
+                        <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#00F2FF] transition-colors">
                           {skill.name}
                         </h3>
                         {skill.highlight && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#C2F800] shadow-[0_0_8px_#C2F800]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00F2FF] shadow-[0_0_8px_#00F2FF]" />
                         )}
                       </div>
 
@@ -162,7 +162,7 @@ export function SkillsSection() {
                     {/* Subtle Bottom Accent Indicator */}
                     <div className="mt-4 pt-3 border-t border-[rgba(255,255,255,0.05)] flex items-center justify-between text-[11px] font-mono text-[#64748B]">
                       <span>Ready in stack</span>
-                      <span className="text-[#C2F800] opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[#00F2FF] opacity-0 group-hover:opacity-100 transition-opacity">
                         Active
                       </span>
                     </div>

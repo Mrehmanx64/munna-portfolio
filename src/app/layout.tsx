@@ -86,7 +86,7 @@ export default function RootLayout({
       lang="en"
       className={`${jakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth dark`}
     >
-      <body className="min-h-screen bg-[#0B0D12] text-[#F8FAFC] antialiased selection:bg-[#C2F800] selection:text-[#0B0D12] relative overflow-x-hidden flex flex-col font-sans">
+      <body className="min-h-screen bg-[#0B0D12] text-[#F8FAFC] antialiased selection:bg-[#00F2FF] selection:text-[#0B0D12] relative overflow-x-hidden flex flex-col font-sans">
         <ScrollProgressBar />
         <CustomCursor />
         {children}

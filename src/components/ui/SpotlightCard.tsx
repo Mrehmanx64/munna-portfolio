@@ -13,7 +13,7 @@ interface SpotlightCardProps extends HTMLMotionProps<"div"> {
 export function SpotlightCard({
   children,
   className = "",
-  spotlightColor = "rgba(194, 248, 0, 0.12)",
+  spotlightColor = "rgba(0, 242, 255, 0.12)",
   enableTilt = false,
   ...props
 }: SpotlightCardProps) {
@@ -60,7 +60,7 @@ export function SpotlightCard({
       }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       style={{ transformStyle: "preserve-3d" }}
-      className={`relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#10141E]/80 backdrop-blur-md transition-colors duration-300 hover:border-[rgba(194,248,0,0.3)] ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#10141E]/80 backdrop-blur-md transition-colors duration-300 hover:border-[rgba(0,242,255,0.3)] ${className}`}
       {...props}
     >
       {/* Radial Spotlight glow following mouse */}

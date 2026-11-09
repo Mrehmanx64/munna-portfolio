@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#0B0D12] text-[#F8FAFC] selection:bg-[#C2F800] selection:text-[#0B0D12] overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#0B0D12] text-[#F8FAFC] selection:bg-[#00F2FF] selection:text-[#0B0D12] overflow-x-hidden">
       {/* Sticky Navigation */}
       <Navbar />
 

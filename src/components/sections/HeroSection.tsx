@@ -1,328 +1,445 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Code2,
-  Cpu,
-  Zap,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const floatingBadges = [
-  { label: "Next.js", icon: Zap, x: -30, y: 50, delay: 0 },
-  { label: "TypeScript", icon: Code2, x: 190, y: -30, delay: 0.2 },
-  { label: "Better Auth", icon: ShieldCheck, x: 260, y: 280, delay: 0.4 },
-  { label: "Node.js", icon: Cpu, x: -30, y: 250, delay: 0.6 },
+gsap.registerPlugin(ScrollTrigger);
+
+const PHRASES = [
+  ["FULL",     "STACK"],
+  ["WEB",      "DEVELOPER"],
+  ["MERN",     "STACK"],
+  ["CREATIVE", "MINDSET"],
+  ["CLEAN",    "CODE"],
+  ["REACT",    "NODE"],
+  ["DIGITAL",  "BUILDER"],
+  ["PROBLEM",  "SOLVER"],
 ];
 
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
-  const heroRef = useRef<HTMLElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const sectionRef      = useRef<HTMLElement>(null);
+  const backdropRef     = useRef<HTMLDivElement>(null);
+  const topWordRef      = useRef<HTMLSpanElement>(null);
+  const bottomWordRef   = useRef<HTMLSpanElement>(null);
+  const kickerRef       = useRef<HTMLParagraphElement>(null);
+  const headlineRef     = useRef<HTMLHeadingElement>(null);
+  const subRef          = useRef<HTMLParagraphElement>(null);
+  const ctaRef          = useRef<HTMLDivElement>(null);
+  const badgeRef        = useRef<HTMLDivElement>(null);
+  const statsRef        = useRef<HTMLDivElement>(null);
+  const phraseIdxRef    = useRef(0);
+  const tlRef           = useRef<gsap.core.Timeline | null>(null);
 
+  // ── Pointer parallax on backdrop ──────────────────────────────────────
   useEffect(() => {
     if (shouldReduceMotion) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      // Mouse coordinates relative to the hero section
-      setMousePos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+    const mq = window.matchMedia("(pointer: fine)");
+    if (!mq.matches) return;
+    const onMove = (e: PointerEvent) => {
+      if (!backdropRef.current) return;
+      const x = (e.clientX / window.innerWidth  - 0.5) * 12;
+      const y = (e.clientY / window.innerHeight - 0.5) * 8;
+      gsap.to(backdropRef.current, {
+        x, y,
+        duration: 0.6,
+        ease: "power2.out",
+        overwrite: "auto",
       });
-      setIsHovering(true);
     };
-
-    const handleMouseLeave = () => {
-      setIsHovering(false);
-    };
-
-    const el = heroRef.current;
-    if (el) {
-      el.addEventListener("mousemove", handleMouseMove);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    }
-    return () => {
-      if (el) {
-        el.removeEventListener("mousemove", handleMouseMove);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      }
-    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
   }, [shouldReduceMotion]);
 
-  // Headline words for animated reveal
-  const headlineWords = [
-    { text: "Turning", highlight: false },
-    { text: "Ideas", highlight: false },
-    { text: "Into", highlight: false },
-    { text: "Digital", highlight: true },
-    { text: "Experiences.", highlight: true },
-  ];
+  // ── Hero entrance + glitch cycling ────────────────────────────────────
+  useEffect(() => {
+    if (!topWordRef.current || !bottomWordRef.current) return;
+    if (shouldReduceMotion) return;
+
+    const ctx = gsap.context(() => {
+
+      // — Entry animation for copy —
+      const entryTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // badge fades in
+      entryTl.fromTo(badgeRef.current,
+        { autoAlpha: 0, y: 12 },
+        { autoAlpha: 1, y: 0, duration: 0.5 },
+        0
+      );
+
+      // kicker slides up
+      entryTl.fromTo(kickerRef.current,
+        { autoAlpha: 0, y: 16 },
+        { autoAlpha: 1, y: 0, duration: 0.5 },
+        0.15
+      );
+
+      // headline words stagger up
+      entryTl.fromTo(headlineRef.current,
+        { autoAlpha: 0, y: 32 },
+        { autoAlpha: 1, y: 0, duration: 0.6 },
+        0.25
+      );
+
+      // sub + cta
+      entryTl.fromTo(subRef.current,
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.5 },
+        0.55
+      );
+      entryTl.fromTo(ctaRef.current,
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.5 },
+        0.65
+      );
+      entryTl.fromTo(statsRef.current,
+        { autoAlpha: 0, x: 20 },
+        { autoAlpha: 1, x: 0, duration: 0.6 },
+        0.5
+      );
+
+      // — Glitch cycling function —
+      const glitchIn = (el: HTMLSpanElement, text: string) => {
+        el.textContent = text;
+        gsap.fromTo(el,
+          {
+            autoAlpha: 0,
+            skewX: 10,
+            scale: 0.95,
+            filter: "blur(10px) brightness(2.2)",
+            y: 14,
+          },
+          {
+            autoAlpha: 1,
+            skewX: 0,
+            scale: 1,
+            filter: "blur(0px) brightness(1)",
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          }
+        );
+      };
+
+      const glitchOut = (el: HTMLSpanElement, onComplete: () => void) => {
+        gsap.to(el, {
+          autoAlpha: 0,
+          skewX: -10,
+          scale: 1.05,
+          filter: "blur(8px) brightness(1.8)",
+          y: -10,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete,
+        });
+      };
+
+      const cyclePhrase = () => {
+        const next = (phraseIdxRef.current + 1) % PHRASES.length;
+        phraseIdxRef.current = next;
+        const [top, bot] = PHRASES[next];
+
+        glitchOut(topWordRef.current!, () => glitchIn(topWordRef.current!, top));
+        // slight stagger on bottom word
+        gsap.delayedCall(0.08, () => {
+          glitchOut(bottomWordRef.current!, () => glitchIn(bottomWordRef.current!, bot));
+        });
+      };
+
+      // initial set
+      glitchIn(topWordRef.current!, PHRASES[0][0]);
+      glitchIn(bottomWordRef.current!, PHRASES[0][1]);
+
+      // cycle every 2.8s
+      const intervalId = setInterval(cyclePhrase, 2800);
+      tlRef.current = entryTl;
+
+      return () => clearInterval(intervalId);
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [shouldReduceMotion]);
 
   return (
     <section
       id="hero"
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0B0D12]"
+      ref={sectionRef}
+      className="relative min-h-screen overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse at 50% 65%, rgba(75,83,91,.18), transparent 38%), linear-gradient(135deg,#0f1014 0%,#0B0D12 52%,#13141a 100%)",
+      }}
     >
-      {/* Background Grid and Radial Gradient */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
-      <div className="absolute inset-0 bg-radial-gradient pointer-events-none" />
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "linear-gradient(to bottom,transparent 0%,#000 12%,#000 80%,transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom,transparent 0%,#000 12%,#000 80%,transparent 100%)",
+          opacity: 0.5,
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-      {/* Mouse-following desktop spotlight effect */}
-      {!shouldReduceMotion && isHovering && (
+      {/* Ambient orbs */}
+      <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full bg-[rgba(90,123,140,.12)] blur-[90px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-[rgba(0,242,255,.05)] blur-[100px] pointer-events-none" aria-hidden="true" />
+
+        {/* ── STAGE ── */}
+        <div className="relative w-full h-full mx-auto px-4 sm:px-6 md:px-10 min-h-screen flex flex-col justify-center" style={{ zIndex: 1 }}>
+
+
+        {/* ── LAYER 1: backdrop cycling phrases ── */}
         <div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-500 opacity-60 hidden lg:block"
+          ref={backdropRef}
+          className="absolute w-full left-0 right-0 text-center font-extrabold pointer-events-none select-none px-4 sm:px-6"
           style={{
-            background: `radial-gradient(650px circle at ${mousePos.x}px ${mousePos.y}px, rgba(194, 248, 0, 0.08), transparent 60%)`,
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            lineHeight: 0.72,
+            letterSpacing: "-0.085em",
+            zIndex: 1,
+            filter: "blur(1.5px)",
+            opacity: 0.75,
+          }}
+          aria-hidden="true"
+        >
+          <span
+            ref={topWordRef}
+            className="block whitespace-nowrap"
+            style={{
+              fontSize: "clamp(90px, 18vw, 270px)",
+              color: "rgba(210,228,235,0.88)",
+              textShadow:
+                "0 0 18px rgba(0,242,255,0.55), 0 0 50px rgba(0,242,255,0.28), 0 0 110px rgba(0,242,255,0.14), 0 0 220px rgba(0,242,255,0.07)",
+            }}
+          />
+          <span
+            ref={bottomWordRef}
+            className="block whitespace-nowrap"
+            style={{
+              fontSize: "clamp(95px, 19vw, 285px)",
+              color: "transparent",
+              WebkitTextStroke: "1px rgba(0,242,255,0.28)",
+              textShadow: "0 0 35px rgba(0,242,255,0.18), 0 0 90px rgba(0,242,255,0.08)",
+            }}
+          />
+        </div>
+
+        {/* ── LAYER 1.5: depth vignette ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 60%, transparent 30%, rgba(11,13,18,0.52) 68%, rgba(11,13,18,0.82) 100%)",
           }}
           aria-hidden="true"
         />
-      )}
 
-      {/* Subtle Ambient Glow Orbs */}
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 rounded-full bg-[rgba(194,248,0,0.04)] blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/10 w-96 h-96 rounded-full bg-[rgba(0,242,254,0.03)] blur-[140px] pointer-events-none" />
+        {/* ── Portrait + environmental lighting ── */}
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-end justify-center pointer-events-none"
+          style={{ height: "100vh", width: "70vw", zIndex: 3 }}
+        >
+          {/* Wide outer bloom */}
+          <div className="absolute" style={{
+            bottom: "12%", left: "50%", transform: "translateX(-50%)",
+            width: "70%", height: "55%", borderRadius: "50%",
+            background: "radial-gradient(ellipse at 50% 60%, rgba(0,210,255,0.22) 0%, rgba(0,242,255,0.10) 35%, transparent 70%)",
+            filter: "blur(40px)", zIndex: 0,
+          }} aria-hidden="true" />
+          {/* Inner core */}
+          <div className="absolute" style={{
+            bottom: "18%", left: "50%", transform: "translateX(-50%)",
+            width: "40%", height: "38%", borderRadius: "50%",
+            background: "radial-gradient(ellipse at 50% 55%, rgba(0,242,255,0.28) 0%, rgba(0,200,255,0.12) 50%, transparent 75%)",
+            filter: "blur(22px)", zIndex: 0,
+          }} aria-hidden="true" />
+          {/* Floor spill */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2" style={{
+            width: "55%", height: "8%", borderRadius: "50%",
+            background: "rgba(0,242,255,0.14)", filter: "blur(20px)", zIndex: 0,
+          }} aria-hidden="true" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Text Content & CTAs */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Small Badge with Live Ping Indicator */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[rgba(194,248,0,0.3)] bg-[rgba(194,248,0,0.07)] text-[#C2F800] text-xs font-semibold uppercase tracking-wider mb-6 shadow-[0_0_15px_rgba(194,248,0,0.15)]"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C2F800] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C2F800]" />
-              </span>
-              <span>FULL-STACK WEB DEVELOPER</span>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="relative w-full h-full"
+            style={{ zIndex: 2 }}
+          >
+            <Image
+              src="/images/hero-munna.png"
+              alt={siteConfig.developer.avatarAlt}
+              fill
+              priority
+              sizes="(max-width: 768px) 90vw, 900px"
+              className="object-contain object-bottom"
+              style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,.35))" }}
+            />
+          </motion.div>
+        </div>
 
-            {/* Main Headline with Staggered Word Reveal */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.08]">
-              {headlineWords.map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.15 + idx * 0.08,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className={`inline-block mr-3 sm:mr-4 ${
-                    word.highlight
-                      ? "text-[#C2F800] drop-shadow-[0_0_35px_rgba(194,248,0,0.35)]"
-                      : "text-white"
-                  }`}
-                >
-                  {word.text}
-                </motion.span>
-              ))}
-            </h1>
-
-            {/* Supporting Text */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55, ease: "easeOut" }}
-              className="text-lg sm:text-xl text-[#94A3B8] max-w-2xl mb-8 leading-relaxed font-normal"
-            >
-              {siteConfig.developer.subheadline}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-              className="flex flex-wrap items-center gap-4 w-full sm:w-auto"
-            >
-              <MagneticButton
-                href="#projects"
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto font-bold tracking-wide"
-              >
-                <span>Explore My Work</span>
-                <ArrowDown className="w-4 h-4 stroke-[2.5]" />
-              </MagneticButton>
-
-              <MagneticButton
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto font-semibold"
-              >
-                <a href="/Naimur_Resume.pdf" download="Naimur_Resume.pdf">
-                  Download Resume
-                </a>
-
-                <ArrowUpRight className="w-4 h-4 stroke-[2]" />
-              </MagneticButton>
-            </motion.div>
-
-            {/* Quick Tech Highlights Pill row */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.06)] flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#64748B]"
-            >
-              <span className="text-[#94A3B8] font-mono uppercase tracking-wider">
-                Primary Stack:
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                {[
-                  "Next.js",
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "Node.js",
-                  "MongoDB",
-                  "Better Auth",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-[#10141E] border border-[rgba(255,255,255,0.06)] text-[#E2E8F0] font-mono text-[11px]"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+        {/* ── COPY — bottom left ── */}
+        <div
+          className="absolute z-10 w-full px-4 sm:px-6 md:px-10"
+          style={{ bottom: "14%" }}
+        >
+          {/* Availability badge */}
+          <div
+            ref={badgeRef}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5"
+            style={{ border: "1px solid rgba(0,242,255,0.3)", background: "rgba(0,242,255,0.07)", opacity: 0 }}
+          >
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00F2FF] animate-pulse"
+              style={{ boxShadow: "0 0 8px #00F2FF" }} />
+            <span className="text-[#00F2FF] font-mono text-[10px] tracking-[.15em] uppercase">
+              Available for opportunities
+            </span>
           </div>
 
-          {/* Right Column: Profile Visual Card with Glowing Ring & Floating Badges */}
-          <div className="lg:col-span-5 flex justify-center items-center relative mt-6 lg:mt-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.3,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="relative w-72 sm:w-80 md:w-96 aspect-square"
-            >
-              {/* Outer Animated Glow Ring */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#C2F800]/20 via-transparent to-[#00F2FE]/20 blur-xl opacity-70 animate-pulse pointer-events-none" />
+          <p
+            ref={kickerRef}
+            className="font-mono text-[10px] tracking-[.2em] uppercase mb-3 text-[#64748B]"
+            style={{ opacity: 0 }}
+          >
+            Full-Stack Developer
+          </p>
 
-              {/* High-tech geometric frame */}
-              <div className="relative w-full h-full rounded-3xl p-2 bg-gradient-to-b from-[rgba(194,248,0,0.3)] via-[rgba(255,255,255,0.08)] to-transparent border border-[rgba(255,255,255,0.12)] shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-md">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0D111A]">
-                  <Image
-                    src={siteConfig.developer.avatar}
-                    alt={siteConfig.developer.avatarAlt}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 320px, 400px"
-                    className="object-cover object-center filter brightness-[0.95] contrast-[1.05] transition-transform duration-700 hover:scale-105"
-                  />
+          <h1
+            ref={headlineRef}
+            className="font-bold leading-[1.0] tracking-tight text-white mb-4"
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontSize: "clamp(30px, 3.6vw, 52px)",
+              letterSpacing: "-0.04em",
+              opacity: 0,
+            }}
+          >
+            {siteConfig.developer.name}<br />
+            <em className="not-italic" style={{ color: "rgba(180,195,210,0.75)" }}>
+              MERN Stack Engineer.
+            </em>
+          </h1>
 
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-transparent to-transparent opacity-60" />
+          <p
+            ref={subRef}
+            className="text-[13px] leading-relaxed mb-6 max-w-[300px]"
+            style={{ color: "#94A3B8", opacity: 0 }}
+          >
+            I build end-to-end web applications with MongoDB, Express,
+            React &amp; Node.js — clean code, real products, shipped.
+          </p>
 
-                  {/* Corner Accent Marks */}
-                  <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#C2F800]" />
-                  <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-[#C2F800]" />
-                  <div className="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-[#C2F800]" />
-                  <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#C2F800]" />
-                </div>
-              </div>
-
-              {/* Floating Technology Badges (Desktop & Tablet) */}
-              {!shouldReduceMotion && (
-                <>
-                  {floatingBadges.map((badge, idx) => {
-                    const Icon = badge.icon;
-                    return (
-                      <motion.div
-                        key={badge.label}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{
-                          opacity: 1,
-                          scale: 1,
-                          y: [0, -8, 0],
-                        }}
-                        transition={{
-                          opacity: { duration: 0.5, delay: 0.6 + badge.delay },
-                          scale: { duration: 0.5, delay: 0.6 + badge.delay },
-                          y: {
-                            duration: 3 + idx * 0.5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            repeatType: "mirror",
-                            delay: idx * 0.3,
-                          },
-                        }}
-                        style={{
-                          left: `${badge.x}px`,
-                          top: `${badge.y}px`,
-                        }}
-                        className="hidden sm:flex absolute z-20 items-center gap-2 px-3 py-1.5 rounded-xl bg-[#10141E]/90 border border-[rgba(255,255,255,0.12)] shadow-[0_10px_25px_rgba(0,0,0,0.6)] backdrop-blur-md text-xs font-semibold text-white hover:border-[#C2F800] transition-colors"
-                      >
-                        <div className="w-5 h-5 rounded-md bg-[#1A2234] flex items-center justify-center text-[#C2F800]">
-                          <Icon className="w-3 h-3" />
-                        </div>
-                        <span>{badge.label}</span>
-                      </motion.div>
-                    );
-                  })}
-                </>
-              )}
-
-              {/* Status indicator pill positioned at bottom */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
-                className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#10141E]/95 border border-[rgba(194,248,0,0.3)] shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md whitespace-nowrap text-xs font-medium text-white"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#C2F800] animate-pulse shadow-[0_0_10px_#C2F800]" />
-                <span>{siteConfig.developer.availability}</span>
-              </motion.div>
-            </motion.div>
+          <div ref={ctaRef} className="flex flex-wrap gap-3" style={{ opacity: 0 }}>
+            <MagneticButton href="#projects" variant="primary" size="md" className="font-bold tracking-wide">
+              <span>View My Work</span>
+              <ArrowDown className="w-4 h-4 stroke-[2.5]" />
+            </MagneticButton>
+            <MagneticButton href="/Naimur_Resume.pdf" variant="outline" size="md" className="font-semibold">
+              <span>Resume</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[2]" />
+            </MagneticButton>
           </div>
         </div>
 
-        {/* Scroll Indicator at bottom */}
+        {/* ── STATS — bottom right ── */}
+        <div
+          ref={statsRef}
+          className="absolute z-10 hidden sm:flex flex-col gap-5"
+          style={{ right: "4%", bottom: "14%", opacity: 0 }}
+        >
+          {[
+            { value: "2+",   label: "Years building" },
+            { value: "5+",   label: "Projects shipped" },
+            { value: "MERN", label: "Core stack" },
+          ].map((s) => (
+            <div key={s.label} className="flex flex-col gap-0.5">
+              <strong
+                className="font-bold leading-none"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontSize: s.value === "MERN" ? "clamp(16px,1.8vw,22px)" : "clamp(22px,2.5vw,30px)",
+                  letterSpacing: "-0.04em",
+                  color: "#00F2FF",
+                }}
+              >
+                {s.value}
+              </strong>
+              <small className="font-mono tracking-[.14em] uppercase" style={{ fontSize: "7px", color: "#64748B" }}>
+                {s.label}
+              </small>
+            </div>
+          ))}
+        </div>
+
+        {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="mt-16 sm:mt-20 flex flex-col items-center justify-center"
+          transition={{ duration: 1, delay: 1.4 }}
+          className="absolute bottom-[3.5%] left-1/2 -translate-x-1/2 z-10 hidden sm:flex items-center gap-2"
+          style={{ color: "#77797c", fontSize: "8px", letterSpacing: ".18em" }}
+          aria-hidden="true"
         >
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#64748B] hover:text-[#C2F800] transition-colors group focus:outline-none"
-            aria-label="Scroll down to About section"
-          >
-            <span>Explore Experience</span>
-            <div className="w-5 h-8 rounded-full border border-[rgba(255,255,255,0.15)] flex items-start justify-center p-1 group-hover:border-[#C2F800] transition-colors">
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-1.5 h-1.5 rounded-full bg-[#C2F800]"
-              />
-            </div>
-          </a>
+          <span className="inline-block w-px h-6 bg-gradient-to-b from-[#00F2FF] to-transparent" />
+          SCROLL
         </motion.div>
+
+      </div>
+
+      {/* ── MOBILE ── */}
+      <div className="relative z-10 flex flex-col items-center text-center gap-5 px-5 pt-28 pb-16 md:hidden">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
+          style={{ border: "1px solid rgba(0,242,255,0.3)", background: "rgba(0,242,255,0.07)" }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00F2FF] animate-pulse" style={{ boxShadow: "0 0 8px #00F2FF" }} />
+          <span className="text-[#00F2FF] font-mono text-[10px] tracking-[.15em] uppercase">Available</span>
+        </div>
+
+        <div className="relative w-72 h-80 sm:w-80 sm:h-96">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-40 rounded-full pointer-events-none"
+            style={{ background: "radial-gradient(ellipse, rgba(0,242,255,0.22) 0%, transparent 70%)", filter: "blur(30px)" }} />
+          <Image
+            src="/images/hero-munna.png"
+            alt={siteConfig.developer.avatarAlt}
+            fill priority sizes="320px"
+            className="object-contain object-bottom"
+            style={{ filter: "drop-shadow(0 12px 30px rgba(0,0,0,.4))" }}
+          />
+        </div>
+
+        <p className="font-mono text-[10px] tracking-[.2em] uppercase text-[#64748B]">Full-Stack Developer</p>
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          {siteConfig.developer.name}<br />
+          <em className="not-italic" style={{ color: "rgba(180,195,210,0.75)" }}>MERN Stack.</em>
+        </h1>
+        <p className="text-sm text-[#94A3B8] max-w-xs leading-relaxed">
+          I build end-to-end web applications with MongoDB, Express, React &amp; Node.js — clean code, real products, shipped.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <MagneticButton href="#projects" variant="primary" size="md" className="font-bold">
+            <span>View My Work</span>
+            <ArrowDown className="w-4 h-4 stroke-[2.5]" />
+          </MagneticButton>
+          <MagneticButton href="/Naimur_Resume.pdf" variant="outline" size="md">
+            <span>Resume</span>
+            <ArrowUpRight className="w-4 h-4 stroke-[2]" />
+          </MagneticButton>
+        </div>
       </div>
     </section>
   );

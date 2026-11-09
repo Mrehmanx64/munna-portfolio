@@ -41,7 +41,7 @@ export function AboutSection() {
   return (
     <section id="about" className="relative py-24 sm:py-32 bg-[#07090E] overflow-hidden">
       {/* Background Accent Gradients */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[rgba(194,248,0,0.03)] blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[rgba(0,242,255,0.03)] blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-[rgba(0,242,254,0.02)] blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +63,7 @@ export function AboutSection() {
           >
             {/* Intro paragraph */}
             <div className="p-6 sm:p-8 rounded-2xl bg-[#10141E]/80 border border-[rgba(255,255,255,0.08)] relative overflow-hidden backdrop-blur-md">
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#C2F800]" />
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#00F2FF]" />
               <p className="text-xl sm:text-2xl font-semibold text-white leading-snug mb-4">
                 &ldquo;{siteConfig.developer.about.intro}&rdquo;
               </p>
@@ -75,7 +75,7 @@ export function AboutSection() {
             {/* Design & UI Approach */}
             <div className="p-6 sm:p-8 rounded-2xl bg-[#10141E]/50 border border-[rgba(255,255,255,0.06)] backdrop-blur-md">
               <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-[#C2F800]" />
+                <Lightbulb className="w-5 h-5 text-[#00F2FF]" />
                 <span>My Approach to UI & Architecture</span>
               </h3>
               <p className="text-[#94A3B8] leading-relaxed text-base mb-6">
@@ -86,7 +86,7 @@ export function AboutSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {focusPoints.map((point) => (
                   <div key={point} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#E2E8F0]">
-                    <CheckCircle2 className="w-4 h-4 text-[#C2F800] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                     <span>{point}</span>
                   </div>
                 ))}
@@ -94,8 +94,8 @@ export function AboutSection() {
             </div>
 
             {/* Long-term vision */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#10141E] to-[#151C2C] border border-[rgba(194,248,0,0.25)] flex items-start gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
-              <div className="w-10 h-10 rounded-xl bg-[rgba(194,248,0,0.1)] border border-[rgba(194,248,0,0.3)] flex items-center justify-center text-[#C2F800] shrink-0">
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#10141E] to-[#151C2C] border border-[rgba(0,242,255,0.25)] flex items-start gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.4)]">
+              <div className="w-10 h-10 rounded-xl bg-[rgba(0,242,255,0.1)] border border-[rgba(0,242,255,0.3)] flex items-center justify-center text-[#00F2FF] shrink-0">
                 <Compass className="w-5 h-5" />
               </div>
               <div>
@@ -117,18 +117,18 @@ export function AboutSection() {
                 <SpotlightCard
                   key={pillar.title}
                   enableTilt={true}
-                  className="p-6 sm:p-7 border border-[rgba(255,255,255,0.08)] hover:border-[rgba(194,248,0,0.3)] transition-all group"
+                  className="p-6 sm:p-7 border border-[rgba(255,255,255,0.08)] hover:border-[rgba(0,242,255,0.3)] transition-all group"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#151B28] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#C2F800] transition-colors group-hover:bg-[#C2F800] group-hover:text-[#0B0D12] shadow-[0_0_15px_rgba(194,248,0,0.1)]">
+                    <div className="w-12 h-12 rounded-xl bg-[#151B28] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#00F2FF] transition-colors group-hover:bg-[#00F2FF] group-hover:text-[#0B0D12] shadow-[0_0_15px_rgba(0,242,255,0.1)]">
                       <Icon className="w-6 h-6 stroke-[2]" />
                     </div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#10141E] border border-[rgba(255,255,255,0.06)] text-[#94A3B8] group-hover:text-[#C2F800] group-hover:border-[rgba(194,248,0,0.3)] transition-colors">
+                    <span className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#10141E] border border-[rgba(255,255,255,0.06)] text-[#94A3B8] group-hover:text-[#00F2FF] group-hover:border-[rgba(0,242,255,0.3)] transition-colors">
                       {pillar.highlight}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#C2F800] transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00F2FF] transition-colors">
                     {pillar.title}
                   </h3>
 
@@ -143,7 +143,7 @@ export function AboutSection() {
             <div className="pt-3">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#C2F800] hover:text-[#D5FF26] group"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#00F2FF] hover:text-[#D5FF26] group"
               >
                 <span>See these principles applied in my projects</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

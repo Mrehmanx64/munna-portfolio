@@ -23,7 +23,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="relative py-24 sm:py-32 bg-[#07090E] overflow-hidden">
       {/* Background Decorative Gradients */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[rgba(194,248,0,0.03)] blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[rgba(0,242,255,0.03)] blur-[150px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[rgba(0,242,254,0.02)] blur-[160px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +49,7 @@ export function ProjectsSection() {
               >
                 <SpotlightCard
                   enableTilt={false}
-                  className="p-6 sm:p-8 lg:p-10 border-[rgba(255,255,255,0.08)] hover:border-[rgba(194,248,0,0.35)] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+                  className="p-6 sm:p-8 lg:p-10 border-[rgba(255,255,255,0.08)] hover:border-[rgba(0,242,255,0.35)] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
                 >
                   <div
                     className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
@@ -81,7 +81,7 @@ export function ProjectsSection() {
 
                           {/* Hover action overlay */}
                           <div className="absolute inset-0 bg-[#0B0D12]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#C2F800] text-[#0B0D12] text-xs font-bold shadow-[0_0_20px_rgba(194,248,0,0.6)] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#00F2FF] text-[#0B0D12] text-xs font-bold shadow-[0_0_20px_rgba(0,242,255,0.6)] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                               <span>Explore Project Details</span>
                               <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
                             </span>
@@ -93,7 +93,7 @@ export function ProjectsSection() {
                           <span
                             className={`w-2 h-2 rounded-full ${
                               project.status === "live"
-                                ? "bg-[#C2F800] animate-pulse shadow-[0_0_8px_#C2F800]"
+                                ? "bg-[#00F2FF] animate-pulse shadow-[0_0_8px_#00F2FF]"
                                 : "bg-[#00F2FE]"
                             }`}
                           />
@@ -111,7 +111,7 @@ export function ProjectsSection() {
                       <div>
                         {/* Number & Badge */}
                         <div className="flex items-center gap-3 mb-3">
-                          <span className="font-mono text-xs text-[#C2F800] tracking-widest uppercase">
+                          <span className="font-mono text-xs text-[#00F2FF] tracking-widest uppercase">
                             0{index + 1} • FEATURED
                           </span>
                         </div>
@@ -120,7 +120,7 @@ export function ProjectsSection() {
                         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2 flex items-baseline gap-2">
                           <span>{project.title}</span>
                           {project.nativeTitle && (
-                            <span className="text-xl font-bold text-[#C2F800]">
+                            <span className="text-xl font-bold text-[#00F2FF]">
                               ({project.nativeTitle})
                             </span>
                           )}
@@ -140,7 +140,7 @@ export function ProjectsSection() {
                         <div className="space-y-2 mb-6">
                           {project.features.slice(0, 3).map((feat, i) => (
                             <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#94A3B8]">
-                              <Check className="w-4 h-4 text-[#C2F800] shrink-0 mt-0.5" />
+                              <Check className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                               <span>{feat}</span>
                             </div>
                           ))}
@@ -151,7 +151,7 @@ export function ProjectsSection() {
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-2.5 py-1 rounded-md bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-[11px] font-mono text-[#C2F800]"
+                              className="px-2.5 py-1 rounded-md bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-[11px] font-mono text-[#00F2FF]"
                             >
                               {tag}
                             </span>
@@ -183,9 +183,9 @@ export function ProjectsSection() {
                         <button
                           type="button"
                           onClick={() => handleOpenDetails(project)}
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#151C2A] text-white hover:bg-[#1D2638] text-xs font-semibold border border-[rgba(255,255,255,0.1)] hover:border-[#C2F800] transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#151C2A] text-white hover:bg-[#1D2638] text-xs font-semibold border border-[rgba(255,255,255,0.1)] hover:border-[#00F2FF] transition-colors"
                         >
-                          <Layers className="w-3.5 h-3.5 text-[#C2F800]" />
+                          <Layers className="w-3.5 h-3.5 text-[#00F2FF]" />
                           <span>View Architecture</span>
                         </button>
                       </div>

@@ -44,7 +44,7 @@ export function MagneticButton({
   };
 
   const baseStyles =
-    "relative inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2F800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D12] select-none";
+    "relative inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D12] select-none";
 
   const sizeStyles = {
     sm: "px-4 py-2 text-xs gap-1.5",
@@ -54,11 +54,11 @@ export function MagneticButton({
 
   const variantStyles = {
     primary:
-      "bg-[#C2F800] text-[#0B0D12] hover:bg-[#D5FF26] shadow-[0_0_20px_rgba(194,248,0,0.35)] hover:shadow-[0_0_30px_rgba(194,248,0,0.55)] active:scale-[0.98]",
+      "bg-[#00F2FF] text-[#0B0D12] hover:bg-[#D5FF26] shadow-[0_0_20px_rgba(0,242,255,0.35)] hover:shadow-[0_0_30px_rgba(0,242,255,0.55)] active:scale-[0.98]",
     secondary:
-      "bg-[#151B28] text-white hover:bg-[#1D2536] border border-[rgba(255,255,255,0.1)] hover:border-[rgba(194,248,0,0.3)] active:scale-[0.98]",
+      "bg-[#151B28] text-white hover:bg-[#1D2536] border border-[rgba(255,255,255,0.1)] hover:border-[rgba(0,242,255,0.3)] active:scale-[0.98]",
     outline:
-      "bg-transparent text-white border border-[rgba(255,255,255,0.15)] hover:border-[#C2F800] hover:text-[#C2F800] hover:bg-[rgba(194,248,0,0.06)] active:scale-[0.98]",
+      "bg-transparent text-white border border-[rgba(255,255,255,0.15)] hover:border-[#00F2FF] hover:text-[#00F2FF] hover:bg-[rgba(0,242,255,0.06)] active:scale-[0.98]",
     ghost:
       "bg-transparent text-[#94A3B8] hover:text-white hover:bg-[rgba(255,255,255,0.05)] active:scale-[0.98]",
   };
