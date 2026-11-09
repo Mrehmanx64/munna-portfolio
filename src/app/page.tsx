@@ -13,7 +13,7 @@ export default function Home() {
       {/* Sticky Navigation */}
       <Navbar />
 
-      <main id="main-content" className="relative z-10 flex flex-col">
+      <main id="main-content" className="relative flex flex-col">
         {/* 1. Hero Section */}
         <HeroSection />
 

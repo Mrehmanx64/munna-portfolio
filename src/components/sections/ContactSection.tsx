@@ -48,25 +48,32 @@ export function ContactSection() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    // Honest handling: simulate client validation check, then provide mailto trigger & clear instructions
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Open mailto link as direct communication fallback
-      const mailtoLink = `mailto:${siteConfig.social.email}?subject=${encodeURIComponent(
-        formData.subject || `Message from ${formData.name}`
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      )}`;
-      window.location.href = mailtoLink;
-    }, 1000);
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyEmail = () => {
@@ -334,7 +341,7 @@ export function ContactSection() {
                   <div className="p-3.5 rounded-xl bg-[#10141E] border border-[rgba(255,255,255,0.06)] flex items-start gap-2.5 text-xs text-[#64748B]">
                     <MessageSquare className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                     <span>
-                      <strong>Honest Delivery:</strong> Submitting will trigger your preferred mail client addressed to <strong className="text-white">{siteConfig.social.email}</strong>. (API backend like Resend or Formspree can be easily bound in <code className="text-[#00F2FF]">src/config/site.ts</code>).
+                      <strong>Sending...</strong> Please wait while your message is processed.
                     </span>
                   </div>
 

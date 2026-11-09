@@ -135,6 +135,14 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Hide sticky navigation when modal popup is open */
+body.modal-open header {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-100%) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 /* Reduced Motion Optimization */
 @media (prefers-reduced-motion: reduce) {
   *,

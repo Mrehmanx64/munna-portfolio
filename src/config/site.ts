@@ -6,33 +6,36 @@ import { SiteConfig } from "@/types";
  */
 export const siteConfig: SiteConfig = {
   developer: {
-    name: "Munna",
+    name: "Munna Rehman",
     role: "Full-Stack Web Developer",
     headline: "Turning Ideas Into Digital Experiences.",
     subheadline:
       "I build modern, responsive web applications with thoughtful design, clean code, and powerful technologies.",
     avatar: "/images/profile.jpeg",
-    avatarAlt: "Naimur - Full-Stack Web Developer",
+    avatarAlt: "Munna Rehman - Full-Stack Web Developer",
     availability: "Available for opportunities & collaborations",
-    location: "Dhaka, Bangladesh",
+    location: "Rajshahi, Bangladesh",
+    phone: "+880 1903-686291",
+    resume: "/Munna_Resume.pdf",
     about: {
       intro:
-        "I am a passionate Full-Stack Web Developer who genuinely loves learning, architecting clean web solutions, and solving real-world problems through software.",
+        "I am a passionate Junior Full-Stack Web Developer with hands-on experience in building scalable web applications using React, Next.js, Node.js, and MongoDB.",
       journey:
         "My journey began with deep curiosity about how interactive products work under the hood. Step by step, I evolved from writing clean HTML, CSS, and modern JavaScript to building full-stack applications with React, Next.js, Node.js, and MongoDB.",
       designPhilosophy:
         "I believe software should be as intuitive and delightful to use as it is robust. I focus on pixel-precise UI design, silky animations, accessible semantics, and seamless responsiveness across devices.",
       founderVision:
-        "My long-term aspiration is to build and scale my own software company—creating independent digital products and SaaS tools that solve tangible problems for real people.",
+        "My long-term aspiration is to build and scale independent digital products and SaaS tools that solve tangible problems for real people.",
     },
   },
 
   social: {
-    // Configurable social URLs - update with your personal usernames
-    github: "https://github.com/Naimur131251",
-    linkedin: "https://www.linkedin.com/in/naimur456/",
-    email: "naimur131251@gmail.com",
-    twitter: "https://x.com",
+    github: "https://github.com/Mrehmanx64",
+    linkedin: "https://www.linkedin.com/in/munnarahmanx64/",
+    email: "themunnarehman@gmail.com",
+    facebook: "https://facebook.com/themunnarehman",
+    instagram: "https://instagram.com/themunnarehman",
+    whatsapp: "https://wa.me/8801903686291",
   },
 
   navItems: [
@@ -211,7 +214,24 @@ export const siteConfig: SiteConfig = {
         "A Bangla market-price platform that helps users explore essential product prices, market comparisons, and price changes across essential daily commodities.",
       longDescription:
         "Bazar Dor (বাজার দর) was built to bring price transparency to everyday consumers and citizens in Bangladesh. It aggregates essential grocery, vegetable, fish, and commodity price data into a clean, bilingual interface. Users can inspect daily rate adjustments, compare rates across markets, and monitor price trends over time.",
-      image: "/images/projects/bazar-dor.jpg",
+      image: "/images/projects/bazar-dor/homepage.png",
+      screenshots: [
+        {
+          title: "Daily Commodity Price Dashboard",
+          image: "/images/projects/bazar-dor/homepage.png",
+          caption: "Live market rates, category navigation, and today's price movements"
+        },
+        {
+          title: "Commodity Price Archive & Trends",
+          image: "/images/projects/bazar-dor/price-archive.png",
+          caption: "Detailed historical price analytics and market-by-market comparisons"
+        },
+        {
+          title: "User Sign Up & Onboarding",
+          image: "/images/projects/bazar-dor/signup.png",
+          caption: "Secure authentication for saving favorite commodities and price alerts"
+        }
+      ],
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST API"],
       liveUrl: "https://naimur-bazar-dor.vercel.app",
       featured: true,
@@ -247,7 +267,24 @@ export const siteConfig: SiteConfig = {
         "A fitness planning interface for organizing workout plans, saving activities, and tracking completed workouts with set, rep, and weight metrics.",
       longDescription:
         "Fit Log is a sleek, distraction-free fitness planning and workout tracking application designed for gym-goers and fitness enthusiasts. It enables users to create structured routine calendars, log real-time exercise performance (sets, reps, weights, duration), and monitor overall training consistency without cluttered advertisements.",
-      image: "/images/projects/fit-log.jpg",
+      image: "/images/projects/fitlog/homepage.png",
+      screenshots: [
+        {
+          title: "Workout Library & Dashboard",
+          image: "/images/projects/fitlog/homepage.png",
+          caption: "Visual muscle group navigation, library of lifts, and plan overview"
+        },
+        {
+          title: "Live Workout Execution & Logging",
+          image: "/images/projects/fitlog/workout-detail.png",
+          caption: "Real-time set, rep, weight checklists and rest intervals"
+        },
+        {
+          title: "Saved Routines & Workout Planner",
+          image: "/images/projects/fitlog/workout-plan.png",
+          caption: "Weekly routine builder with custom split scheduling"
+        }
+      ],
       tags: [
         "Next.js",
         "TypeScript",
@@ -256,9 +293,10 @@ export const siteConfig: SiteConfig = {
         "Mongoose",
         "MongoDB",
       ],
+      liveUrl: "https://fit-log-sooty-mu.vercel.app",
       featured: true,
-      status: "development",
-      statusLabel: "Interactive Preview & Showcase",
+      status: "live",
+      statusLabel: "Live Web App",
       features: [
         "Interactive Workout Routine Calendar with split scheduling (Legs, Upper Body, Cardio)",
         "Detailed exercise performance logging with live set/rep/weight checklists",
@@ -278,6 +316,82 @@ export const siteConfig: SiteConfig = {
         {
           category: "Architecture",
           items: ["REST Endpoints", "Modular Component System"],
+        },
+      ],
+    },
+    {
+      id: "shongkolpo",
+      title: "Shongkolpo",
+      nativeTitle: "সংকল্প",
+      tagline: "Community Service & Social Impact Events in Dhaka",
+      description:
+        "A community platform for discovering, creating, and joining social service events and volunteer initiatives across Dhaka and beyond.",
+      longDescription:
+        "Shongkolpo (সংকল্প) connects volunteers, organizers, and communities to mobilize social impact across Dhaka. It features comprehensive event listings, organizer management tools, volunteer registration, and neighborhood filtering tailored for community action.",
+      image: "/images/projects/shongkolpo/homepage.png",
+      screenshots: [
+        {
+          title: "Community Impact & Landing Showcase",
+          image: "/images/projects/shongkolpo/homepage.png",
+          caption: "Neighborhood service drives, pledge statistics, and volunteer overview"
+        },
+        {
+          title: "Upcoming Community Events Directory",
+          image: "/images/projects/shongkolpo/upcoming-events.png",
+          caption: "Filtered volunteer drives across Mirpur, Dhanmondi, and Dhaka districts"
+        },
+        {
+          title: "Create Volunteer Initiative",
+          image: "/images/projects/shongkolpo/create-event.png",
+          caption: "Organizer event creation portal with location, schedule, and volunteer requirements"
+        },
+        {
+          title: "Event Management Dashboard",
+          image: "/images/projects/shongkolpo/manage-events.png",
+          caption: "Organizer dashboard to review attendee RSVPs, manage events, and update status"
+        },
+        {
+          title: "Volunteer Profile & Activity History",
+          image: "/images/projects/shongkolpo/user-profile.png",
+          caption: "Volunteer impact dashboard, joined drives, and community contributions"
+        },
+        {
+          title: "Community Registration & Onboarding",
+          image: "/images/projects/shongkolpo/signup.png",
+          caption: "Secure sign-up for active community volunteers and organizers"
+        }
+      ],
+      tags: [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Tailwind CSS",
+        "REST API",
+      ],
+      liveUrl: "https://b14-a8-cat-hermione-munna-client-g4.vercel.app",
+      featured: true,
+      status: "live",
+      statusLabel: "Live Community Platform",
+      features: [
+        "Community service discovery with neighborhood filtering across Dhaka",
+        "Event creation and management portal for community organizers",
+        "Volunteer registration and RSVP tracking with personal event dashboard",
+        "Mobile-responsive design optimized for on-the-ground volunteer coordination",
+        "Community outreach gallery, newsletter subscription, and organizer profiles",
+      ],
+      techStackDetails: [
+        {
+          category: "Frontend",
+          items: ["React", "Tailwind CSS", "React Router", "Lucide Icons"],
+        },
+        {
+          category: "Backend & Data",
+          items: ["Node.js", "Express.js", "MongoDB", "JWT Authentication"],
+        },
+        {
+          category: "Deployment",
+          items: ["Vercel Edge Platform", "Cloud Database"],
         },
       ],
     },

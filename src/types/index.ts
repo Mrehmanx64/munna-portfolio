@@ -9,6 +9,12 @@ export interface SkillItem {
   highlight?: boolean;
 }
 
+export interface ProjectScreenshot {
+  title: string;
+  image: string;
+  caption?: string;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -17,9 +23,10 @@ export interface ProjectItem {
   description: string;
   longDescription: string;
   image: string;
+  screenshots?: ProjectScreenshot[];
   tags: string[];
   liveUrl?: string;
-  githubUrl?: string; // Configurable, only if provided
+  githubUrl?: string;
   featured: boolean;
   status: 'live' | 'development';
   statusLabel: string;
@@ -55,6 +62,8 @@ export interface SiteConfig {
     avatarAlt: string;
     availability: string;
     location: string;
+    phone?: string;
+    resume?: string;
     about: {
       intro: string;
       journey: string;
@@ -67,6 +76,9 @@ export interface SiteConfig {
     linkedin: string;
     email: string;
     twitter?: string;
+    facebook?: string;
+    instagram?: string;
+    whatsapp?: string;
   };
   skills: SkillItem[];
   projects: ProjectItem[];

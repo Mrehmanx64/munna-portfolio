@@ -20,11 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://naimur.dev"),
+  metadataBase: new URL("https://munnarehman.dev"),
   title: `${siteConfig.developer.name} | ${siteConfig.developer.role}`,
-  description: `${siteConfig.developer.name} is a ${siteConfig.developer.role} specializing in Next.js, React, TypeScript, Tailwind CSS, Node.js, Express.js, MongoDB, and Better Auth. Creator of Bazar Dor and Fit Log.`,
+  description: `${siteConfig.developer.name} is a ${siteConfig.developer.role} specializing in Next.js, React, TypeScript, Tailwind CSS, Node.js, Express.js, MongoDB, and Better Auth. Creator of Bazar Dor, Fit Log, and Shongkolpo.`,
   keywords: [
-    "Naimur",
+    "Munna Rehman",
+    "Munna Rahman",
+    "Munna",
     "Full-Stack Web Developer",
     "Next.js Developer",
     "React Developer",
@@ -36,6 +38,7 @@ export const metadata: Metadata = {
     "Better Auth",
     "Bazar Dor",
     "Fit Log",
+    "Shongkolpo",
     "Bangladesh Web Developer",
     "Frontend Motion Design",
   ],
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://naimur.dev",
+    url: "https://munnarehman.dev",
     title: `${siteConfig.developer.name} — ${siteConfig.developer.role}`,
     description: siteConfig.developer.subheadline,
     siteName: `${siteConfig.developer.name} Portfolio`,

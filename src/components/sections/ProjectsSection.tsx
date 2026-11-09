@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Layers, ArrowUpRight, Sparkles, Check } from "lucide-react";
+import {
+  ExternalLink,
+  Layers,
+  ArrowUpRight,
+  Check,
+  ImageIcon,
+} from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { ProjectItem } from "@/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -14,9 +20,11 @@ import { ProjectModal } from "@/components/sections/ProjectModal";
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [initialScreenshotIdx, setInitialScreenshotIdx] = useState(0);
 
-  const handleOpenDetails = (project: ProjectItem) => {
+  const handleOpenDetails = (project: ProjectItem, screenshotIdx: number = 0) => {
     setSelectedProject(project);
+    setInitialScreenshotIdx(screenshotIdx);
     setModalOpen(true);
   };
 
@@ -62,12 +70,12 @@ export function ProjectsSection() {
                         isReversed ? "lg:order-2" : "lg:order-1"
                       }`}
                     >
-                      <div
-                        onClick={() => handleOpenDetails(project)}
-                        className="group relative rounded-2xl overflow-hidden bg-[#0A0D15] border border-[rgba(255,255,255,0.1)] shadow-2xl cursor-pointer"
-                      >
+                      <div className="group relative rounded-2xl overflow-hidden bg-[#0A0D15] border border-[rgba(255,255,255,0.1)] shadow-2xl">
                         {/* Aspect Ratio Container */}
-                        <div className="relative w-full aspect-[16/10] overflow-hidden">
+                        <div
+                          onClick={() => handleOpenDetails(project, 0)}
+                          className="relative w-full aspect-[16/10] overflow-hidden cursor-pointer"
+                        >
                           <Image
                             src={project.image}
                             alt={`${project.title} Preview`}
@@ -82,23 +90,50 @@ export function ProjectsSection() {
                           {/* Hover action overlay */}
                           <div className="absolute inset-0 bg-[#0B0D12]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#00F2FF] text-[#0B0D12] text-xs font-bold shadow-[0_0_20px_rgba(0,242,255,0.6)] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                              <span>Explore Project Details</span>
+                              <span>Explore Project Gallery &amp; Details</span>
                               <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
                             </span>
                           </div>
+
+                          {/* Top Status Tag */}
+                          <div className="absolute top-3.5 left-3.5 z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0D12]/90 border border-[rgba(255,255,255,0.12)] backdrop-blur-md text-[11px] font-semibold text-white shadow-lg">
+                            <span
+                              className={`w-2 h-2 rounded-full ${
+                                project.status === "live"
+                                  ? "bg-[#00F2FF] animate-pulse shadow-[0_0_8px_#00F2FF]"
+                                  : "bg-[#00F2FE]"
+                              }`}
+                            />
+                            <span>{project.statusLabel}</span>
+                          </div>
+
+                          {/* Top Right Screen Count Badge */}
+                          {project.screenshots && project.screenshots.length > 1 && (
+                            <div className="absolute top-3.5 right-3.5 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0D12]/90 border border-[rgba(255,255,255,0.12)] backdrop-blur-md text-[10px] font-mono font-medium text-[#CBD5E1] shadow-lg">
+                              <ImageIcon className="w-3 h-3 text-[#00F2FF]" />
+                              <span>{project.screenshots.length} Screens</span>
+                            </div>
+                          )}
                         </div>
 
-                        {/* Top Status Tag */}
-                        <div className="absolute top-3.5 left-3.5 z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0D12]/90 border border-[rgba(255,255,255,0.12)] backdrop-blur-md text-[11px] font-semibold text-white shadow-lg">
-                          <span
-                            className={`w-2 h-2 rounded-full ${
-                              project.status === "live"
-                                ? "bg-[#00F2FF] animate-pulse shadow-[0_0_8px_#00F2FF]"
-                                : "bg-[#00F2FE]"
-                            }`}
-                          />
-                          <span>{project.statusLabel}</span>
-                        </div>
+                        {/* Interactive Screen Preview Strip */}
+                        {project.screenshots && project.screenshots.length > 1 && (
+                          <div className="flex flex-wrap items-center gap-1.5 px-3 py-2 bg-[#080B12] border-t border-white/[0.06]">
+                            <span className="text-[10px] font-mono uppercase tracking-wider text-[#64748B] mr-1 hidden sm:inline">
+                              Gallery:
+                            </span>
+                            {project.screenshots.map((screen, sIdx) => (
+                              <button
+                                key={screen.image}
+                                type="button"
+                                onClick={() => handleOpenDetails(project, sIdx)}
+                                className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.04] border border-white/[0.08] text-[#94A3B8] hover:text-[#00F2FF] hover:border-[#00F2FF]/40 hover:bg-[#00F2FF]/[0.06] transition-all"
+                              >
+                                {screen.title.split(" ")[0]} • 0{sIdx + 1}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -136,22 +171,25 @@ export function ProjectsSection() {
                           {project.description}
                         </p>
 
-                        {/* Bullet Highlights */}
+                        {/* Feature Highlights */}
                         <div className="space-y-2 mb-6">
-                          {project.features.slice(0, 3).map((feat, i) => (
-                            <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#94A3B8]">
+                          {project.features.slice(0, 3).map((feat, fIdx) => (
+                            <div
+                              key={fIdx}
+                              className="flex items-start gap-2 text-xs sm:text-sm text-[#94A3B8]"
+                            >
                               <Check className="w-4 h-4 text-[#00F2FF] shrink-0 mt-0.5" />
                               <span>{feat}</span>
                             </div>
                           ))}
                         </div>
 
-                        {/* Technology Badges */}
+                        {/* Tags */}
                         <div className="flex flex-wrap gap-2 mb-8">
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-2.5 py-1 rounded-md bg-[#151C2A] border border-[rgba(255,255,255,0.08)] text-[11px] font-mono text-[#00F2FF]"
+                              className="px-2.5 py-1 text-xs font-mono rounded-lg bg-[#141A26] border border-[rgba(255,255,255,0.06)] text-[#94A3B8]"
                             >
                               {tag}
                             </span>
@@ -159,34 +197,29 @@ export function ProjectsSection() {
                         </div>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex flex-wrap items-center gap-3 pt-2">
-                        {project.liveUrl ? (
+                      {/* Action Links */}
+                      <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[rgba(255,255,255,0.08)]">
+                        {project.liveUrl && (
                           <MagneticButton
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             variant="primary"
-                            size="md"
-                            className="font-bold tracking-wide"
+                            size="sm"
+                            className="font-bold tracking-wide shadow-[0_0_20px_rgba(0,242,255,0.3)]"
                           >
-                            <span>Live Application</span>
-                            <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                            <span>Live App</span>
+                            <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
                           </MagneticButton>
-                        ) : (
-                          <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#131926] border border-[rgba(255,255,255,0.08)] text-xs font-mono text-[#94A3B8]">
-                            <Sparkles className="w-3.5 h-3.5 text-[#00F2FE]" />
-                            <span>Preview Mode Active</span>
-                          </div>
                         )}
 
                         <button
                           type="button"
-                          onClick={() => handleOpenDetails(project)}
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#151C2A] text-white hover:bg-[#1D2638] text-xs font-semibold border border-[rgba(255,255,255,0.1)] hover:border-[#00F2FF] transition-colors"
+                          onClick={() => handleOpenDetails(project, 0)}
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#151C2A] text-white hover:bg-[#1D2638] text-xs font-semibold border border-[rgba(255,255,255,0.1)] hover:border-[#00F2FF] transition-colors"
                         >
                           <Layers className="w-3.5 h-3.5 text-[#00F2FF]" />
-                          <span>View Architecture</span>
+                          <span>View Screens &amp; Details</span>
                         </button>
                       </div>
                     </div>
@@ -200,9 +233,11 @@ export function ProjectsSection() {
 
       {/* Interactive Project Modal */}
       <ProjectModal
+        key={`${selectedProject?.id ?? "none"}-${initialScreenshotIdx}`}
         project={selectedProject}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
+        initialIndex={initialScreenshotIdx}
       />
     </section>
   );
